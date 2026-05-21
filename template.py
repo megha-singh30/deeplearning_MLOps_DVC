@@ -28,11 +28,12 @@ list_of_files = [
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/constants/__init__.py",
     "config/config.yaml",
-    "dvc.yaml",
+    "dvc.yaml", # for model deployment
     "params.yaml",
-    "requirements.txt",
+    "requirements.txt", # keeping the list of all packages to be used by setup.py
     "setup.py",
-    "research/trials.ipynb" # for experiments done with the data before production release 
+    "research/trials.ipynb", # for experiments done with the data before production release 
+    "templates/index.html" # for creating the web application
 ]
 
 #3 3. Convert the list into actual path to create folders ############################
