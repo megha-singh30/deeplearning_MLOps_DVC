@@ -1,0 +1,13 @@
+# Here we will keep configuration related to diff stages of the project, 
+#such as data ingestion, data transformation, model training, etc.
+# we just need to modify the values of these keys in the config.yaml file, 
+# and the code will read these values and use them accordingly.
+# thus no need to hardcode any values in the code, making it more flexible and easier to maintain.
+
+artifacts_root: artifacts
+
+data_ingesion:
+  root_dr: artifacts/data_ingestion
+  source_URL: https://github.com/entbappy/Branching-tutorial/raw/master/Chicken-fecal-images.zip
+  local_data_file: artifacts/data_ingestion/chicken_fecal_images.zip
+  unzip_dir: artifacts/data_ingestion
