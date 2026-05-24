@@ -114,19 +114,19 @@ def save_bin(data: Any, path: Path) -> None:
         raise
 
 @ensure_annotations
-def load_bin(path: Path) -> Any:
+def load_bin(path: Path) -> ConfigBox:
     """Loads data from a binary file using joblib.
     Args:
         path (Path): The path to the binary file.
     Returns:
-        Any: The data loaded from the binary file.
+        ConfigBox: The data loaded from the binary file.
     Raises:
         Exception: If there is an error loading the binary file.
     """
     try:
         data = joblib.load(path)
         logger.info(f"Data successfully loaded from {path}")
-        return data
+        return ConfigBox(data)
     except Exception as e:
         logger.error(f"Error loading binary file: {e}")
         raise
