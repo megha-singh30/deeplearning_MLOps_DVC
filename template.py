@@ -28,7 +28,7 @@ list_of_files = [
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/constants/__init__.py",
     "config/config.yaml",
-    "dvc.yaml", # for model deployment
+    "dvc.yaml", # for model deployment, to track pipelines and data versioning
     "params.yaml",
     "requirements.txt", # keeping the list of all packages to be used by setup.py
     "setup.py",

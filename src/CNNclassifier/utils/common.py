@@ -8,7 +8,7 @@ import numpy as np
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
-from typing import Any
+from typing import Any, List
 import base64
 
 # Common utility functions for the CNN classifier project:
@@ -26,7 +26,8 @@ import base64
 # The logger is used to log important information and errors throughout the functions, which can be helpful for debugging and monitoring the application.
 
 @ensure_annotations
-def read_yaml(path_to_yaml) -> ConfigBox:
+def read_yaml(path_to_yaml: Path) -> ConfigBox:
+    
     """
     Reads a YAML file and returns its contents as a ConfigBox object.
 
@@ -38,16 +39,15 @@ def read_yaml(path_to_yaml) -> ConfigBox:
         BoxValueError: If the YAML file is empty or cannot be parsed.       
     """
     try:
+        
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
-            logger.info(f"YAML file: {path_to_yaml} loaded successfully")
+            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
             return ConfigBox(content)
-    except BoxValueError as e:
-        logger.error(f"Error parsing YAML file: {e}")
-        raise
+    except BoxValueError:
+        raise ValueError("yaml file is empty")
     except Exception as e:
-        logger.error(f"Error reading YAML file: {e}")
-        raise
+        raise e
 
 @ensure_annotations
 def save_json(path: Path, data: dict) -> None:
@@ -68,7 +68,7 @@ def save_json(path: Path, data: dict) -> None:
             logger.info(f"Data successfully saved to {path}")
     except Exception as e:
         logger.error(f"Error saving JSON file: {e}")
-        raise
+        raise e
 
 
 @ensure_annotations
@@ -90,7 +90,7 @@ def load_json(path: Path) -> ConfigBox:
             return ConfigBox(data)
     except Exception as e:
         logger.error(f"Error loading JSON file: {e}")
-        raise
+        raise e
     
 
 @ensure_annotations
@@ -111,7 +111,7 @@ def save_bin(data: Any, path: Path) -> None:
         logger.info(f"Data successfully saved to {path}")
     except Exception as e:
         logger.error(f"Error saving binary file: {e}")
-        raise
+        raise e
 
 @ensure_annotations
 def load_bin(path: Path) -> ConfigBox:
@@ -129,7 +129,7 @@ def load_bin(path: Path) -> ConfigBox:
         return ConfigBox(data)
     except Exception as e:
         logger.error(f"Error loading binary file: {e}")
-        raise
+        raise e
 
 @ensure_annotations
 def encode_image_to_base64(cropped_image_path: Path) -> str:
@@ -150,7 +150,7 @@ def encode_image_to_base64(cropped_image_path: Path) -> str:
             return encoded_string
     except Exception as e:
         logger.error(f"Error encoding image to base64: {e}")
-        raise
+        raise e
 
 @ensure_annotations
 def decode_base64_to_image(encoded_string: str, output_image_path: Path) -> None:
@@ -169,7 +169,7 @@ def decode_base64_to_image(encoded_string: str, output_image_path: Path) -> None
             logger.info(f"Image successfully decoded from base64 and saved to {output_image_path}")
     except Exception as e:
         logger.error(f"Error decoding base64 to image: {e}")
-        raise
+        raise e
 
 @ensure_annotations
 def get_size(image_path: Path)-> str:
@@ -187,27 +187,18 @@ def get_size(image_path: Path)-> str:
         return f"~ {size_in_kB:.2f} kB"
     except Exception as e:
         logger.error(f"Error getting size of the image: {e}")
-        raise
+        raise e
 
 @ensure_annotations
-def create_directories(path_to_directories: list, verbose=True) -> None:
-    """
-    Creates directories if they do not exist.
+def create_directories(path_to_directories: list, verbose=True):
+    """create list of directories
 
     Args:
-        path_to_directories (list): A list of paths to the directories to be created.
-        verbose (bool, optional): If True, logs the creation of each directory. Defaults to True.
-    Returns:
-        None
-    Raises:
-        Exception: If there is an error creating the directories.
+        path_to_directories (list): list of path of directories
+        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
     """
-    try:
-        for path in path_to_directories:
-            os.makedirs(path, exist_ok=True)
-            if verbose:
-                logger.info(f"Directory created at: {path}")
-    except Exception as e:
-        logger.error(f"Error creating directories: {e}")
-        raise
+    for path in path_to_directories:
+        os.makedirs(path, exist_ok=True)
+        if verbose:
+            logger.info(f"created directory at: {path}")
         
