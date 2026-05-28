@@ -79,6 +79,31 @@ At this stage, config.yaml file stores details related to data ingestion like lo
 17.	CONFIGURATION MANAGER IN SRC\CONFIG -- Define, ConfigurationManager which takes the inputs from configuration and define as proper variables and create the root directory and return the configuration (it defines variables taking inputs from config file and preparing them for next stages). This we will write in config/configuration.py	
 18.	COMPONENT UPDATE -- Now, we will defined the actual work of Data Ingestion Class, it will have two functions – 1) Download the data(in zip format) 2) extract the zip file. All the details needed like url, folder locations will be passed by ConfigurationManager
 19.	PIPELINE UPDATE – Create a new file called “Stage01_Data_ingestion.py”. Here we will call component to process the data ingestion stage. First we will name the stage “STAGE_NAME”. make a class called DataIngestionTrainingPipeline. Define main() here and later call the main to execute dataingestion pipeline. This will help us to run it separately. It will also defined in DVC, stage by stage.
-In case we do not use DVC, then we will call it from main. So we will call this pipeline from main.py() also.
+20.	In case we do not use DVC, then we will call it from main. So we will call this pipeline from main.py() also.
 AT THE END, WHEN ALL PIPELINES ARE UPDATED THEN DVC WILL BE UPDATED.
+
+ADD “artifacts/*” at the end of .gitignore to exclude artifacts from commits.
+
+IN BETWEEN, GIT COMMITS CAN BE DONE WITH PROPER MESSAGE
+
+Also check, which directory you are working in –
+	pwd()
+	os.chdir(“../”)
+
+PREPARING TRANSFER LEARNING AND TRAINING
+21.	CONFIG UPDATE –
+First update the config.yaml with directory, folder locations details and where to download VGG16 model and updated model path.
+22.	PARAMS UPDATE –
+Next we will update the Params.yaml, these are parameters needed to configure our model params on top of VGG16 model. These params like input_weights, input_size, learning_rate etc
+23.	ENTITY UPDATE –
+Here we will update config_entity to have dataclass decorator to set the return type of Base model preparation configuration manager class
+24.	COMPONENT UPDATE-
+Make a new file “preparebasemodel.py” and put all relevant functions for fetching the model, updating the model and saving the model
+25.	PIPELINE UPDATE-
+In this call preparebasemodel.py, and execute the process in a new class called preparebasemodeltrainingpipiline
+
+26.	UPDATE MAIN-
+Here pipeline is called and base model, updated model are created and stored
+
+
 

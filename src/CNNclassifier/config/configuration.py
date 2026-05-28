@@ -1,6 +1,6 @@
 from CNNclassifier.utils.common import read_yaml, create_directories
 from CNNclassifier.constants import *
-from CNNclassifier.entity.config_entity import DataIngestionConfig
+from CNNclassifier.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig)
 from CNNclassifier import logger
 from CNNclassifier.entity.config_entity import PrepareBaseModelConfig
 
