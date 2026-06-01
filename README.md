@@ -85,7 +85,7 @@ git push -u main branch_name
 ```
 As this is self-initiated project, we can directly merge it with main branch.
 
-# All these above-mentioned functions are declared here with decorator @ensure_annotations
+All these above-mentioned functions are declared here with decorator @ensure_annotations
 
 
 ## Following steps provide the explanation of each of the step of WORKFLOW done for DATA INGESTION STEP
