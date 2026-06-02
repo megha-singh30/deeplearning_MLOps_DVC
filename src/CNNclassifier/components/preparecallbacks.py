@@ -2,7 +2,7 @@ from zipfile import ZipFile
 import os
 import urllib.request as request
 import tensorflow as tf
-from time import time
+import time
 
 from CNNclassifier.entity.config_entity import PrepareCallbacksConfig
 
@@ -25,3 +25,9 @@ class PrepareCallback:
             filepath=self.config.checkpoint_model_filepath,
             save_best_only=True
         ))
+    
+       
+    def get_tb_ckpt_callbacks(self):
+        return [
+            self._create_tb_callback, 
+            self._create_chkpt_callback]

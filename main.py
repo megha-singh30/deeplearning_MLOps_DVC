@@ -1,6 +1,7 @@
 from CNNclassifier import logger
 from CNNclassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from CNNclassifier.pipeline.stage_02_preparebasemodel import PrepareBaseModelTrainingPipeline
+from CNNclassifier.pipeline.stage_03_training import ModelTrainingPipeline
 
 ## This shows how the workflow of the project will happen
 '''
@@ -15,8 +16,6 @@ from CNNclassifier.pipeline.stage_02_preparebasemodel import PrepareBaseModelTra
 9. Update dvc.yaml
 
 '''
-
-from CNNclassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 
 STAGE_NAME = "Data Ingestion Stage"
 
@@ -42,3 +41,15 @@ try:
 except Exception as e:
     logger.error(e)
     raise e
+
+
+STAGE_NAME = "Model Training Stage"
+
+try:
+     logger.info(f">>>>> stage {STAGE_NAME} started <<<<<")
+     model_training_pipeline = ModelTrainingPipeline()
+     model_training_pipeline.main()
+     logger.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx==========x")
+except Exception as e:
+     logger.exception(e)
+     raise e
