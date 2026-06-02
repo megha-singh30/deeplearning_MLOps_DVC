@@ -19,12 +19,19 @@ class PrepareCallback:
         )
         return tf.keras.callbacks.TensorBoard(log_dir=tb_running_log_dir)
     
-    @property
+    # @property
+    # def _create_chkpt_callback(self):
+    #     return(tf.keras.callbacks.ModelCheckpoint(
+    #         filepath=self.config.checkpoint_model_filepath,
+    #         save_best_only=True
+    #     ))
+    
+    @property   
     def _create_chkpt_callback(self):
-        return(tf.keras.callbacks.ModelCheckpoint(
-            filepath=self.config.checkpoint_model_filepath,
+        return tf.keras.callbacks.ModelCheckpoint(
+            filepath=str(self.config.checkpoint_model_filepath),
             save_best_only=True
-        ))
+        )
     
        
     def get_tb_ckpt_callbacks(self):

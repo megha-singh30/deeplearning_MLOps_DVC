@@ -11,9 +11,16 @@ class Training:
     
     def get_base_model(self):
         self.model = tf.keras.models.load_model(
-            self.config.updated_base_model_path
+            self.config.updated_base_model_path,
+            compile=False
+        )
+        self.model.compile(
+        optimizer=tf.keras.optimizers.Adam(),
+        loss="categorical_crossentropy",
+        metrics=["accuracy"]
         )
         print(f"Base model loaded from: {self.config.updated_base_model_path}")
+
     def train_valid_generator(self):
 
         datagenerator_kwargs = dict(
@@ -35,6 +42,7 @@ class Training:
             directory=self.config.training_data,
             subset="validation",
             shuffle=False,
+            class_mode="categorical",
             **dataflow_kwargs
         )
 
@@ -55,6 +63,7 @@ class Training:
             directory=self.config.training_data,
             subset="training",
             shuffle=True,
+            class_mode="categorical",
             **dataflow_kwargs
         )
 
@@ -70,8 +79,8 @@ class Training:
         self.model.fit(
             self.train_generator,
             epochs=self.config.params_epochs,
-            steps_per_epoch=self.steps_per_epoch,
-            validation_steps=self.validation_steps,
+            # steps_per_epoch=self.steps_per_epoch,
+            # validation_steps=self.validation_steps,
             validation_data=self.valid_generator,
             callbacks=callback_list
         )
