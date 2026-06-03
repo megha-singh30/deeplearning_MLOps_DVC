@@ -2,6 +2,7 @@ from CNNclassifier import logger
 from CNNclassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from CNNclassifier.pipeline.stage_02_preparebasemodel import PrepareBaseModelTrainingPipeline
 from CNNclassifier.pipeline.stage_03_training import ModelTrainingPipeline
+from CNNclassifier.pipeline.stage_04_evaluation import EvaluationPipeline
 
 ## This shows how the workflow of the project will happen
 '''
@@ -53,3 +54,16 @@ try:
 except Exception as e:
      logger.exception(e)
      raise e
+
+
+STAGE_NAME = "Evaluation stage"
+try:
+   logger.info(f"*******************")
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+   model_evalution = EvaluationPipeline()
+   model_evalution.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
+except Exception as e:
+        logger.exception(e)
+        raise e
