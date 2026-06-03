@@ -231,3 +231,5 @@ DVC stores lightweight pointers in Git and storing large data elsewhere:
 local storage, S3, Azure, GDrive, SSH server etc.
 
 DVC ensures reproducibility for data, models, metrics, pipeline steps
+
+> A separate DVC.yaml will be created and a proper format is followed to create pipelines etc.
