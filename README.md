@@ -233,3 +233,12 @@ local storage, S3, Azure, GDrive, SSH server etc.
 DVC ensures reproducibility for data, models, metrics, pipeline steps
 
 > A separate DVC.yaml will be created and a proper format is followed to create pipelines etc.
+
+```bash
+dvc init
+dvc repro
+dvc dag
+```
+One by one it will run all pipelines, starting from data_ingestion
+it will show which pipeline it is running and also track its status
+So if you change any other pipeline not data_ingestion, then it will comment that it has no change and run others. 
