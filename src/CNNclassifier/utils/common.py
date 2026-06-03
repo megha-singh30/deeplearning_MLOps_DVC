@@ -48,7 +48,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
     except Exception as e:
         raise e
 
-@ensure_annotations
+# @ensure_annotations
 def save_json(path: Path, data: dict) -> None:
     """
     Saves data to a JSON file.
@@ -61,13 +61,18 @@ def save_json(path: Path, data: dict) -> None:
     Raises:
         Exception: If there is an error saving the JSON file.
     """
-    try:
-        with open(path, "w") as json_file:
-            json.dump(data, json_file, indent=4)
-            logger.info(f"Data successfully saved to {path}")
-    except Exception as e:
-        logger.error(f"Error saving JSON file: {e}")
-        raise e
+    # try:
+    #     with open(path, "w") as json_file:
+    #         json.dump(data, json_file, indent=4)
+    #         logger.info(f"Data successfully saved to {path}")
+    # except Exception as e:
+    #     logger.error(f"Error saving JSON file: {e}")
+    #     raise e
+    
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
+
+    logger.info(f"json file saved at: {path}")
 
 
 @ensure_annotations
