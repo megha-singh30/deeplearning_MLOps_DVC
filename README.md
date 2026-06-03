@@ -192,3 +192,31 @@ ModelCheckpoint(
     save_best_only=True
 )
 ```
+
+# Model Training
+1. CONFIG UPDATE –
+Update config.yaml file with details related to model training like the root directory and where to store the trained model
+
+2. PARAMS UPDATE –
+Update params.yaml file with details related to model training like epochs, batch size, learning rate etc
+
+3. ENTITY UPDATE –
+Here we will update config_entity to have dataclass decorator to set the return type of Model training configuration manager class. This will create the root dir and respective folders and return the type of config variables needed in model training.
+
+4. COMPONENT UPDATE-
+Make a new file “training.py” and put all relevant functions for fetching the updated base model, preparing train and valid generator and training the model and saving the model.
+
+5. PIPELINE UPDATE-
+In this call training.py, and execute the process in a new class called modeltrainingpipiline
+
+6. UPDATE MAIN-
+Here pipeline is called and model is trained and stored
+
+7. UPDATE GITHUB -->
+```bash
+git add .
+
+git commit -m “Added Model Training pipeline"
+
+git push -u main branch_name
+```
