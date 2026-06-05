@@ -242,3 +242,4 @@ dvc dag
 One by one it will run all pipelines, starting from data_ingestion
 it will show which pipeline it is running and also track its status
 So if you change any other pipeline not data_ingestion, then it will comment that it has no change and run others. 
+Currently DVC repro is not runnign showing some errors
