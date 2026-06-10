@@ -29,7 +29,7 @@ stages:
     cmd: python src\CNNclassifier\pipeline\stage_03_training.py
     deps:
       - src\CNNclassifier\pipeline\stage_03_training.py
-      - src\CNNclassifier\components\prepare_callbacks.py
+      - src\CNNclassifier\components\preparecallbacks.py
       - config/config.yaml
       - artifacts\data_ingestion\Chicken-fecal-images
       - artifacts\prepare_base_model
@@ -50,7 +50,7 @@ stages:
       - src\CNNclassifier\pipeline\stage_04_evaluation.py
       - config/config.yaml
       - artifacts\data_ingestion\Chicken-fecal-images
-      - artifacts\training\trained_model.h5
+      - artifacts\training\model.h5
     params:
       - IMAGE_SIZE
       - BATCH_SIZE
