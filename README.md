@@ -243,3 +243,11 @@ One by one it will run all pipelines, starting from data_ingestion
 it will show which pipeline it is running and also track its status
 So if you change any other pipeline not data_ingestion, then it will comment that it has no change and run others. 
 Currently DVC repro is not runnign showing some errors
+
+# Prepare the Predict.py file 
+This file is created in src\pipeline. This file will take the image from the external world via app and predict the class of the Image like Healthy or Coccidiosis.
+It will return json output.
+
+# Prepare app.py
+This will create a webpage to host the project and take images as inputs
+Flask is used to create the host.
